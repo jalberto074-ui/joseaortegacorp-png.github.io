@@ -388,7 +388,7 @@ body {
 /* Click Hint */
 #click-hint {
     position: fixed;
-    bottom: 22%; /* Positioned above the label */
+    bottom: calc(8% + 6rem); /* Positioned relative to the label (8%) + height of text */
     left: 50%;
     transform: translateX(-50%);
     color: var(--accent-color);
@@ -481,6 +481,6 @@ body {
 
     #click-hint {
         font-size: 0.65rem;
-        bottom: 18%; /* Adjusted to stay above the smaller text */
+        bottom: calc(8% + 3.5rem); /* Adjusted for mobile label height */
     }
 }

@@ -274,13 +274,15 @@ export class ParticleSystem {
         for (let y = 0; y < this.canvas.height; y += 3) {
             for (let x = 0; x < this.canvas.width; x += 3) {
                 const index = (y * this.canvas.width + x) * 4;
-                const isMobile = window.innerWidth < 768;
-                const scale = isMobile ? 0.25 : 0.38; // Smaller icons for mobile
-                validPoints.push({
-                    x: (x - this.canvas.width / 2) * scale,
-                    y: -(y - this.canvas.height / 2) * scale,
-                    z: 0
-                });
+                if (data[index] > 64) {
+                    const isMobile = window.innerWidth < 768;
+                    const scale = isMobile ? 0.25 : 0.38; // Smaller icons for mobile
+                    validPoints.push({
+                        x: (x - this.canvas.width / 2) * scale,
+                        y: -(y - this.canvas.height / 2) * scale,
+                        z: 0
+                    });
+                }
             }
         }
 
