@@ -5,22 +5,28 @@ export class UIManager {
         this.overlay = document.getElementById('content-overlay');
         if (this.overlay) this.overlay.style.display = 'none';
 
-        // Label Container
+        // Grouped Label & Hint Container
         this.labelContainer = document.createElement('div');
         this.labelContainer.style.position = 'fixed';
         this.labelContainer.style.bottom = '8%';
         this.labelContainer.style.width = '100%';
-        this.labelContainer.style.textAlign = 'center';
-        this.labelContainer.style.fontFamily = "'Outfit', sans-serif";
+        this.labelContainer.style.display = 'flex';
+        this.labelContainer.style.flexDirection = 'column';
+        this.labelContainer.style.alignItems = 'center';
         this.labelContainer.style.pointerEvents = 'none';
-        this.labelContainer.style.zIndex = '20';
+        this.labelContainer.style.zIndex = '50';
         document.body.appendChild(this.labelContainer);
 
-        // Click Hint
+        // Click Hint (now a child of labelContainer)
         this.clickHint = document.createElement('div');
         this.clickHint.id = 'click-hint';
         this.clickHint.textContent = "CLICK PARA EXPLORAR";
-        document.body.appendChild(this.clickHint);
+        this.labelContainer.appendChild(this.clickHint);
+
+        // Label element (will be created in updateLabel)
+        this.labelElement = document.createElement('h1');
+        this.labelElement.className = 'section-label';
+        this.labelContainer.appendChild(this.labelElement);
 
         // Detail Overlay
         this.detailOverlay = document.getElementById('detail-overlay');
@@ -62,11 +68,7 @@ export class UIManager {
 
     updateLabel(label, opacity) {
         if (this.currentLabel !== label) {
-            this.labelContainer.innerHTML = '';
-            const h1 = document.createElement('h1');
-            h1.className = 'section-label';
-            h1.textContent = label;
-            this.labelContainer.appendChild(h1);
+            this.labelElement.textContent = label;
             this.currentLabel = label;
         }
         this.labelContainer.style.opacity = opacity;

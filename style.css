@@ -213,14 +213,16 @@ body {
 }
 
 .section-label {
-    font-size: 3.2rem; /* Reduced from 4rem to avoid overlap */
+    font-size: 2.8rem; /* Further reduced for maximum safety */
     font-weight: 800;
     color: #ffffff;
     text-shadow: 0 0 30px rgba(0,0,0,0.8);
     margin: 0;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    padding: 0 2rem; /* Add padding to prevent edge touching */
+    padding: 0 2rem;
+    text-align: center;
+    line-height: 1.1;
 }
 
 /* Contact Section */
@@ -388,19 +390,15 @@ body {
 
 /* Click Hint */
 #click-hint {
-    position: fixed;
-    bottom: calc(8% + 8.5rem); /* Increased gap significantly for desktop */
-    left: 50%;
-    transform: translateX(-50%);
     color: var(--accent-color);
     font-size: 0.75rem;
     letter-spacing: 0.3em;
     opacity: 0;
     transition: opacity 1s;
     pointer-events: none;
-    z-index: 50;
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: 0.8rem; /* Space between hint and title */
 }
 
 /* Moving light sweep across "ONE PERSON." title */
@@ -482,6 +480,6 @@ body {
 
     #click-hint {
         font-size: 0.65rem;
-        bottom: calc(8% + 3.5rem); /* Adjusted for mobile label height */
+        margin-bottom: 0.4rem;
     }
 }
