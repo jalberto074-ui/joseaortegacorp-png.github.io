@@ -292,7 +292,7 @@ body {
 }
 
 .section-label {
-    font-size: 2.8rem; /* Further reduced for maximum safety */
+    font-size: clamp(1.4rem, 4vw, 2.2rem); /* Responsive with 2.2rem cap for desktop */
     font-weight: 800;
     color: #ffffff;
     text-shadow: 0 0 30px rgba(0,0,0,0.8);
@@ -494,7 +494,7 @@ body {
 /* Responsive Design (Mobile) */
 @media (max-width: 768px) {
     .section-label {
-        font-size: 1.8rem; /* Much smaller for mobile */
+        font-size: 1.4rem; /* Reduced to avoid screen crowding */
     }
 
     .intro-title h1 {
@@ -579,11 +579,11 @@ body {
     }
 
     .label-group {
-        bottom: 18% !important; /* Moved significantly higher to be closer to icon on mobile */
+        bottom: 22% !important; /* Raised further to be closer to central icon */
     }
 
     #click-hint {
-        font-size: 0.65rem;
-        margin-bottom: 0.2rem; /* Bring hint closer to title */
+        font-size: 0.85rem; /* Increased for better visibility */
+        margin-bottom: 0.4rem; /* Increased spacing */
     }
 }

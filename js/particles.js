@@ -276,7 +276,7 @@ export class ParticleSystem {
                 const index = (y * this.canvas.width + x) * 4;
                 if (data[index] > 64) {
                     const isMobile = window.innerWidth < 768;
-                    const scale = isMobile ? 0.25 : 0.38; // Smaller icons for mobile
+                    const scale = isMobile ? 0.18 : 0.38; // Reduced mobile scale for better proportionality
                     validPoints.push({
                         x: (x - this.canvas.width / 2) * scale,
                         y: -(y - this.canvas.height / 2) * scale,

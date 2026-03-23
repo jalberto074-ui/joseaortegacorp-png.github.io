@@ -38,6 +38,11 @@ export class UIManager {
         this.hintTimeout = null;
         this.isDetailOpen = false;
 
+        // Touch Tracking for Scroll Guard
+        this.touchStartX = 0;
+        this.touchStartY = 0;
+        this.isScrolling = false;
+
         // Contact Popup
         this.headerContactBtn = document.getElementById('header-contact-btn');
         this.mobileContactBtn = document.getElementById('mobile-contact-btn');
@@ -74,9 +79,24 @@ export class UIManager {
             }
         });
 
+        // Robust Mobile Scroll Guard
+        window.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.touches[0].clientX;
+            this.touchStartY = e.touches[0].clientY;
+            this.isScrolling = false;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            const dx = e.touches[0].clientX - this.touchStartX;
+            const dy = e.touches[0].clientY - this.touchStartY;
+            if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+                this.isScrolling = true;
+            }
+        }, { passive: true });
+
         // Global Click & Touch Listener
         const handleInteraction = (e) => {
-            if (this.isDetailOpen) return;
+            if (this.isDetailOpen || this.isScrolling) return;
 
             // Ignore interaction elements
             if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
