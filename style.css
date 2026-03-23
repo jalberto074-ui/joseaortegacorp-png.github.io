@@ -65,11 +65,90 @@ body {
 }
 
 .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     opacity: 0;
-    /* Starts hidden, animates in if not contact */
     animation: fadeIn 2s ease-out forwards 1s;
     pointer-events: auto;
     transition: opacity 0.5s;
+    width: 100%;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.contact-trigger {
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    transition: opacity 0.3s, transform 0.3s;
+    border-bottom: 1px solid transparent;
+}
+
+.contact-trigger:hover {
+    opacity: 0.8;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.mobile-contact-trigger {
+    display: none; /* Hidden on desktop */
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-color);
+    margin-top: 0.8rem;
+    cursor: pointer;
+    font-weight: 600;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.contact-popup {
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: 4px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(102, 252, 241, 0.1);
+}
+
+.contact-popup.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.popup-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.popup-item .label {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.2em;
+}
+
+.popup-item .value {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
 }
 
 .logo {
@@ -439,6 +518,27 @@ body {
     .subtitle {
         font-size: 0.75rem;
         letter-spacing: 0.2em;
+    }
+
+    .header-left {
+        display: none;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .mobile-contact-trigger {
+        display: block;
+    }
+
+    .contact-popup {
+        top: 6rem;
+        right: 1rem;
+        left: auto;
+        width: calc(100% - 2rem);
+        max-width: 300px;
     }
 
     .detail-content {

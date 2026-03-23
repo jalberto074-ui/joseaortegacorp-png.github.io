@@ -38,6 +38,11 @@ export class UIManager {
         this.hintTimeout = null;
         this.isDetailOpen = false;
 
+        // Contact Popup
+        this.headerContactBtn = document.getElementById('header-contact-btn');
+        this.mobileContactBtn = document.getElementById('mobile-contact-btn');
+        this.contactPopup = document.getElementById('contact-popup');
+
         this.setupEvents();
     }
 
@@ -48,6 +53,26 @@ export class UIManager {
                 this.closeDetail();
             });
         }
+
+        // Contact Popup Toggling
+        const toggleContact = (e) => {
+            e.stopPropagation();
+            this.contactPopup.classList.toggle('active');
+        };
+
+        if (this.headerContactBtn) this.headerContactBtn.addEventListener('click', toggleContact);
+        if (this.mobileContactBtn) this.mobileContactBtn.addEventListener('click', toggleContact);
+
+        // Close popup when clicking outside
+        window.addEventListener('click', (e) => {
+            if (this.contactPopup && this.contactPopup.classList.contains('active')) {
+                if (!this.contactPopup.contains(e.target) && 
+                    e.target !== this.headerContactBtn && 
+                    e.target !== this.mobileContactBtn) {
+                    this.contactPopup.classList.remove('active');
+                }
+            }
+        });
 
         // Global Click & Touch Listener
         const handleInteraction = (e) => {
