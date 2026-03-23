@@ -478,8 +478,12 @@ body {
         font-size: 0.8rem;
     }
 
+    .label-group {
+        bottom: 18% !important; /* Moved significantly higher to be closer to icon on mobile */
+    }
+
     #click-hint {
         font-size: 0.65rem;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.2rem; /* Bring hint closer to title */
     }
 }

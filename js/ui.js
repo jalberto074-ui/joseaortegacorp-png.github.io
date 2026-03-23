@@ -6,7 +6,7 @@ export class UIManager {
         if (this.overlay) this.overlay.style.display = 'none';
 
         // Grouped Label & Hint Container
-        this.labelContainer = document.createElement('div');
+        this.labelContainer.className = 'label-group';
         this.labelContainer.style.position = 'fixed';
         this.labelContainer.style.bottom = '8%';
         this.labelContainer.style.width = '100%';
