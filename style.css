@@ -213,13 +213,14 @@ body {
 }
 
 .section-label {
-    font-size: 4rem;
+    font-size: 3.2rem; /* Reduced from 4rem to avoid overlap */
     font-weight: 800;
     color: #ffffff;
     text-shadow: 0 0 30px rgba(0,0,0,0.8);
     margin: 0;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    padding: 0 2rem; /* Add padding to prevent edge touching */
 }
 
 /* Contact Section */
@@ -388,7 +389,7 @@ body {
 /* Click Hint */
 #click-hint {
     position: fixed;
-    bottom: calc(8% + 6rem); /* Positioned relative to the label (8%) + height of text */
+    bottom: calc(8% + 8.5rem); /* Increased gap significantly for desktop */
     left: 50%;
     transform: translateX(-50%);
     color: var(--accent-color);

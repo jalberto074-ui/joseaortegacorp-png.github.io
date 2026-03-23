@@ -58,12 +58,6 @@ export class UIManager {
         };
 
         window.addEventListener('click', handleInteraction);
-        window.addEventListener('touchstart', (e) => {
-            // Check if it's a "clean" tap (optional, but good for UX)
-            // For now, simple touchstart to bypass click delays on some devices
-            // But only if not closing or inside a detail
-            handleInteraction(e);
-        }, { passive: true });
     }
 
     updateLabel(label, opacity) {
