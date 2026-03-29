@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jose Alberto Ortega | Data Universe</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <!-- Three.js from CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+                "gsap": "https://unpkg.com/gsap@3.12.5/index.js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Overlay UI (Fixed) -->
+    <div id="ui-container">
+        <header class="main-header">
+            <div class="header-left">
+                <div class="contact-trigger" id="header-contact-btn">CONTACTO</div>
+            </div>
+            <div class="header-right">
+                <div class="logo">JOSE ALBERTO ORTEGA</div>
+                <div class="subtitle">DATA ANALYTICS &amp; AUTOMATION</div>
+                <!-- Mobile Contact Link will be moved here via CSS or simply placed here -->
+                <div class="mobile-contact-trigger" id="mobile-contact-btn">CONTACTO</div>
+            </div>
+
+            <!-- Contact Info Popup -->
+            <div id="contact-popup" class="contact-popup">
+                <div class="popup-item">
+                    <span class="label">WHATSAPP:</span>
+                    <span class="value">+58 412 263 9814</span>
+                </div>
+                <div class="popup-item">
+                    <span class="label">EMAIL:</span>
+                    <span class="value">jalberto074@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 2px; z-index: 100;">
+            <div id="progress-bar" style="height: 100%; width: 0%; background: #66fcf1; transition: width 0.1s;"></div>
+        </div>
+
+        <div class="footer-controls">
+            <!-- Hint removed, moved to Intro Title -->
+        </div>
+    </div>
+
+    <!-- 3D Canvas Container -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Scroll Snap Container -->
+    <main id="scroll-container">
+        <!-- Section 0: Intro / Sphere -->
+        <section class="snap-section">
+            <div class="intro-title">
+                <h1>UNA PERSONA.</h1>
+                <h2>UN UNIVERSO DE OPORTUNIDADES.</h2>
+                <div class="scroll-hint">
+                    <div class="mouse-icon"></div>
+                    <span>DESLIZA PARA ENTRAR</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Analysis -->
+        <section class="snap-section"></section>
+
+        <!-- Section 2: SQL -->
+        <section class="snap-section"></section>
+
+        <!-- Section 3: Marketing -->
+        <section class="snap-section"></section>
+
+        <!-- Section 4: Engineering -->
+        <section class="snap-section"></section>
+
+        <!-- Section 5: IT -->
+        <section class="snap-section"></section>
+
+        <!-- Section 6: BI -->
+        <section class="snap-section"></section>
+
+        <!-- Section 7: Contact (Exit) -->
+        <section class="snap-section contact-section">
+            <div class="contact-content">
+                <h2>¿LISTO PARA COMENZAR?</h2>
+                <p>Construyamos tu estrategia de datos juntos.</p>
+
+                <form action="https://formspree.io/f/xzdjlvyq" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="NOMBRE" required>
+                    <input type="email" name="_replyto" placeholder="EMAIL" required>
+                    <textarea name="message" placeholder="MENSAJE" rows="4"></textarea>
+                    <button type="submit">INICIAR SECUENCIA</button>
+                </form>
+
+                <div class="contact-details">
+                    <span>+58 412 263 9814</span>
+                    <span>jalberto074@gmail.com</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Click Interaction Layover -->
+    <div id="click-zone"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; cursor: pointer; display: none;">
+    </div>
+
+    <!-- Detail Overlay (Full Screen) -->
+    <div id="detail-overlay" class="overlay-container">
+        <div class="detail-content">
+            <button class="close-detail-btn">&times;</button>
+            <h1 id="detail-title">TITLE</h1>
+            <div class="detail-body">
+                <p>Detailed description of this skill...</p>
+                <ul>
+                    <li>Achievement 1</li>
+                    <li>Achievement 2</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic -->
+    <script type="module" src="js/main.js?v=1.2"></script>
+</body>
+
+</html>
