@@ -18,13 +18,13 @@ export class UIManager {
         this.labelContainer.style.zIndex = '50';
         document.body.appendChild(this.labelContainer);
 
-        // Click Hint (now a child of labelContainer)
+        // Click Hint
         this.clickHint = document.createElement('div');
         this.clickHint.id = 'click-hint';
         this.clickHint.textContent = "CLICK TO EXPLORE";
         this.labelContainer.appendChild(this.clickHint);
 
-        // Label element (will be created in updateLabel)
+        // Label element
         this.labelElement = document.createElement('h1');
         this.labelElement.className = 'section-label';
         this.labelContainer.appendChild(this.labelElement);
@@ -38,7 +38,7 @@ export class UIManager {
         this.hintTimeout = null;
         this.isDetailOpen = false;
 
-        // Touch Tracking for Scroll Guard
+        // Touch Tracking
         this.touchStartX = 0;
         this.touchStartY = 0;
         this.isScrolling = false;
@@ -59,7 +59,6 @@ export class UIManager {
             });
         }
 
-        // Contact Popup Toggling (with mobile fix)
         const toggleContact = (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -75,7 +74,6 @@ export class UIManager {
             this.mobileContactBtn.addEventListener('touchend', toggleContact);
         }
 
-        // Close popup when clicking outside
         window.addEventListener('click', (e) => {
             if (this.contactPopup && this.contactPopup.classList.contains('active')) {
                 if (!this.contactPopup.contains(e.target) && 
@@ -86,7 +84,6 @@ export class UIManager {
             }
         });
 
-        // Robust Mobile Scroll Guard
         window.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
             this.touchStartY = e.touches[0].clientY;
@@ -101,11 +98,9 @@ export class UIManager {
             }
         }, { passive: true });
 
-        // Global Click Listener (Handles card opening)
         const handleInteraction = (e) => {
             if (this.isDetailOpen || this.isScrolling) return;
 
-            // Ignore interaction elements and contact triggers
             if (e.target.tagName === 'BUTTON' || 
                 e.target.tagName === 'INPUT' || 
                 e.target.tagName === 'TEXTAREA' ||
@@ -115,10 +110,8 @@ export class UIManager {
                 return;
             }
 
-            // Ignore contact section clicks
             if (e.target.closest('.contact-section')) return;
 
-            // If we have a valid label, open details
             if (this.currentLabel && this.currentLabel !== "") {
                 this.openDetail(this.currentLabel);
             }
@@ -133,7 +126,6 @@ export class UIManager {
             this.currentLabel = label;
         }
         this.labelContainer.style.opacity = opacity;
-
         if (opacity < 0.5) {
             this.hideHint();
         } else {
@@ -160,19 +152,15 @@ export class UIManager {
         this.isDetailOpen = true;
         this.hideHint();
         this.labelContainer.style.opacity = 0;
-
         const data = skillData[title];
         if (data) {
             if (this.detailTitle) this.detailTitle.textContent = title;
             const detailBody = document.querySelector('.detail-body');
-            
             if (detailBody) {
                 let htmlContent = `
                     <p style="font-size: 1.15rem; line-height: 1.65; margin-bottom: 2rem; color: #ffffff; opacity: 0.9;">${data.description}</p>
                     <div class="portfolio-card">
                 `;
-
-                // 1. Impact Stats
                 if (data.impact && data.impact.length > 0) {
                     htmlContent += `
                         <div class="impact-grid">
@@ -185,8 +173,6 @@ export class UIManager {
                         </div>
                     `;
                 }
-
-                // 2. Main Bullets
                 htmlContent += `
                     <ul style="list-style: none; padding: 0; margin-bottom: 2.5rem;">
                         ${data.bullets.map(b => `
@@ -197,8 +183,6 @@ export class UIManager {
                         `).join('')}
                     </ul>
                 `;
-
-                // 3. Portfolio Images
                 if (data.images && data.images.length > 0) {
                     htmlContent += `
                         <div class="portfolio-images">
@@ -211,15 +195,11 @@ export class UIManager {
                         </div>
                     `;
                 }
-
-                htmlContent += `</div>`; // Close portfolio-card
+                htmlContent += `</div>`;
                 detailBody.innerHTML = htmlContent;
-                
-                // Ensure scroll is at top
                 document.querySelector('.detail-content').scrollTop = 0;
             }
         }
-
         if (this.detailOverlay) this.detailOverlay.classList.add('active');
     }
 

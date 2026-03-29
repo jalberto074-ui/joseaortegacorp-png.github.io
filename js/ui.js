@@ -61,12 +61,19 @@ export class UIManager {
 
         // Contact Popup Toggling
         const toggleContact = (e) => {
+            e.preventDefault();
             e.stopPropagation();
             this.contactPopup.classList.toggle('active');
         };
 
-        if (this.headerContactBtn) this.headerContactBtn.addEventListener('click', toggleContact);
-        if (this.mobileContactBtn) this.mobileContactBtn.addEventListener('click', toggleContact);
+        if (this.headerContactBtn) {
+            this.headerContactBtn.addEventListener('click', toggleContact);
+            this.headerContactBtn.addEventListener('touchend', toggleContact);
+        }
+        if (this.mobileContactBtn) {
+            this.mobileContactBtn.addEventListener('click', toggleContact);
+            this.mobileContactBtn.addEventListener('touchend', toggleContact);
+        }
 
         // Close popup when clicking outside
         window.addEventListener('click', (e) => {
@@ -98,8 +105,16 @@ export class UIManager {
         const handleInteraction = (e) => {
             if (this.isDetailOpen || this.isScrolling) return;
 
-            // Ignore interaction elements
-            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            // Ignore interaction elements and contact triggers
+            if (e.target.tagName === 'BUTTON' || 
+                e.target.tagName === 'INPUT' || 
+                e.target.tagName === 'TEXTAREA' ||
+                e.target.closest('.contact-trigger') ||
+                e.target.closest('.mobile-contact-trigger') ||
+                e.target.closest('.contact-popup')) {
+                return;
+            }
+            
             // Ignore contact section clicks
             if (e.target.closest('.contact-section')) return;
 
@@ -110,7 +125,6 @@ export class UIManager {
         };
 
         window.addEventListener('click', handleInteraction);
-        window.addEventListener('touchend', handleInteraction, { passive: true });
     }
 
     updateLabel(label, opacity) {

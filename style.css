@@ -426,14 +426,18 @@ body {
 }
 
 .detail-content {
-    max-width: 800px;
+    max-width: 850px;
     width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
     text-align: center;
     padding: 3rem;
     border: 1px solid var(--accent-color);
     box-shadow: 0 0 50px rgba(102, 252, 241, 0.1);
     background: rgba(10, 10, 10, 0.95);
     position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) transparent;
 }
 
 #detail-title {
@@ -452,15 +456,17 @@ body {
 
 .close-detail-btn {
     position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 2.5rem;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 2.2rem;
     background: none;
     border: none;
-    color: white;
+    color: var(--accent-color);
     cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 110;
+    line-height: 1;
 }
 
 .close-detail-btn:hover {
@@ -526,7 +532,8 @@ body {
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    max-width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
 .project-image-wrap img {
@@ -648,8 +655,10 @@ body {
     }
 
     #detail-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
     }
 
     .detail-body {
