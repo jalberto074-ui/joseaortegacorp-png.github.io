@@ -125,6 +125,7 @@ export class UIManager {
         };
 
         window.addEventListener('click', handleInteraction);
+        window.addEventListener('touchend', handleInteraction, { passive: true });
     }
 
     updateLabel(label, opacity) {
